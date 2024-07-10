@@ -15,14 +15,14 @@ datasource db {
 
 enum OrderStatus {
   PENDING
-  CONFIRMED
+  DELIVERED
   CANCELLED
 }
 
 model Order {
   id String @id @default(uuid())
   totalAmount Float
-  totalItems Int
+  totalItems Float
 
   status OrderStatus
   paid Boolean @default(false)
