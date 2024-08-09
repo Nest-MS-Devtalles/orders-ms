@@ -1,5 +1,6 @@
 import { OrderStatus } from '@prisma/client';
 import { IsEnum, IsUUID } from 'class-validator';
+
 import { OrderStatusList } from '../enums/order.enum';
 
 export class ChangeOrderStatusDto {
