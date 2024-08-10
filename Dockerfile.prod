@@ -1,5 +1,5 @@
 # 1. DEPENDENCIAS
-FROM node:21-alpine3.19 as deps
+FROM --platform=linux/amd64 node:21-alpine3.19 AS deps
 
 WORKDIR /usr/src/app
 
@@ -9,7 +9,7 @@ COPY package-lock.json .
 RUN npm i
 
 # 2. BUILDER - CONTRUIR LA IMAGEN
-FROM node:21-alpine3.19 as builder
+FROM --platform=linux/amd64 node:21-alpine3.19 AS builder
 
 ARG ORDERS_DATABASE_URL
 ENV DATABASE_URL=$ORDERS_DATABASE_URL
@@ -31,7 +31,7 @@ RUN npm ci -f --only=production && npm cache clean --force
 
 
 # 3. CREAR LA IMAGEN FINAL
-FROM node:21-alpine3.19 as prod
+FROM --platform=linux/amd64 node:21-alpine3.19 AS prod
 
 WORKDIR /usr/src/app
 
